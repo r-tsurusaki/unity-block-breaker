@@ -1,6 +1,6 @@
-# block-breaker
+# unity-block-breaker
 
-"block-breaker" is a game development tutorial with Unity.
+"unity-block-breaker" is a game development tutorial with Unity.
 
 # DEMO
 
