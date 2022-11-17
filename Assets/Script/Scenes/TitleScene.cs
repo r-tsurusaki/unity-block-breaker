@@ -1,20 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleScene : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
-            this.GameStart();
-        }
-    }
-
-    public void GameStart()
-    {
-        SceneManager.LoadScene("Game");
+            GameManager.LoadSceneMenu();
+        }    
     }
 }

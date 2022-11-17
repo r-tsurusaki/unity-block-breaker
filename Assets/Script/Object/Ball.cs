@@ -15,10 +15,6 @@ public class Ball : MonoBehaviour
     void Start()
     {
         this.myRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
-
-        // 初期動作を与える
-        Vector2 force = new Vector2(this.speedX, this.speedY);
-        this.myRigidbody.AddForce(force);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,17 +25,37 @@ public class Ball : MonoBehaviour
         {
             // このオブジェクトを破棄する
             Destroy(this.gameObject);
-
-            // ゲームオーバー処理の実行
-            this.gameScene.GameOver();
         }
     }
 
     /// <summary>
     /// オブジェクトの動きを停止する
     /// </summary>
-    public void stop()
+    public void pause()
     {
-        this.myRigidbody.velocity = Vector2.zero;
+        Time.timeScale = 0f;
+    }
+
+    /// <summary>
+    /// スタート時に発射する処理
+    /// </summary>
+    public void firstImpact()
+    {
+        Time.timeScale = 1f;
+        this.myRigidbody.AddForce(new Vector2(this.speedX, this.speedY));
+    }
+
+    /// <summary>
+    /// ランダムに発射する処理
+    /// </summary>
+    public void RandomImpact()
+    {
+        Time.timeScale = 1f;
+        this.myRigidbody.AddForce(new Vector2(this.speedX * this.RandomInt(), this.speedY * this.RandomInt()));
+    }
+
+    private int RandomInt()
+    {
+        return Random.Range(0, 2) == 0 ? 1 : -1;
     }
 }
